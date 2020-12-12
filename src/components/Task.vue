@@ -1,6 +1,6 @@
 <template>
-    <div class="task" :class="stateClass">
-        <span class="close" @click="$emit('taskDeleted', task)"><i class="far fa-trash-alt"></i></span>
+    <div @click="$emit('taskStateChanged', task)" class="task" :class="stateClass">
+        <span class="close" @click.stop="$emit('taskDeleted', task)"><i class="far fa-trash-alt"></i></span>
         <p>{{ task.name }}</p>
     </div>
 </template>
@@ -13,7 +13,7 @@ export default {
         stateClass() {
             return {
                 pending: this.task.pending,
-                done: !this.task.pending
+                done: !this.task.pending 
             }
         }
     }
